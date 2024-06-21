@@ -35,7 +35,9 @@ coin_flip = stats.binom(p=0.5, n=10)
 cf_expected_value = coin_flip.expect()
 print(f"Expected value of a coin flip: {cf_expected_value:.4f}")
 
-cf_cdf = coin_flip.cdf(5)
-print(f"CDF: {cf_cdf:.4f}")
+print(f"CDF: {coin_flip.cdf(5):.4f}")
 print(f"PMF: {coin_flip.pmf(5):.4f}")
 print(f"PPF: {coin_flip.ppf(0.5):.4f}")
+
+# The sum of PMF values is equal to CDF
+assert coin_flip.cdf(5) == sum([coin_flip.pmf(i) for i in range(5)])
